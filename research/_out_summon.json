@@ -1,0 +1,91 @@
+{
+  "beforeTitles": [
+    "创建 HTML 个人名片画布",
+    "制作简单个人名片网页 待确认",
+    "制作简洁个人名片网页"
+  ],
+  "nCards": 12,
+  "btnTxt": "召唤",
+  "frames": [
+    {
+      "t": 1,
+      "href": "ntId%2522%253A%2522%2522%252C%2522savedAt%2522%253A1789702301149%257D#",
+      "ecPage": false,
+      "hasComposer": true,
+      "hasView": false,
+      "viewportText": null,
+      "newTitles": [],
+      "modal": []
+    },
+    {
+      "t": 2,
+      "href": "ntId%2522%253A%2522%2522%252C%2522savedAt%2522%253A1789702301149%257D#",
+      "ecPage": false,
+      "hasComposer": true,
+      "hasView": false,
+      "viewportText": null,
+      "newTitles": [],
+      "modal": []
+    },
+    {
+      "t": 3,
+      "href": "ntId%2522%253A%2522%2522%252C%2522savedAt%2522%253A1789702301149%257D#",
+      "ecPage": false,
+      "hasComposer": true,
+      "hasView": false,
+      "viewportText": null,
+      "newTitles": [],
+      "modal": []
+    },
+    {
+      "t": 4,
+      "href": "ntId%2522%253A%2522%2522%252C%2522savedAt%2522%253A1789702301149%257D#",
+      "ecPage": false,
+      "hasComposer": true,
+      "hasView": false,
+      "viewportText": null,
+      "newTitles": [],
+      "modal": []
+    },
+    {
+      "t": 5,
+      "href": "ntId%2522%253A%2522%2522%252C%2522savedAt%2522%253A1789702301149%257D#",
+      "ecPage": false,
+      "hasComposer": true,
+      "hasView": false,
+      "viewportText": null,
+      "newTitles": [],
+      "modal": []
+    },
+    {
+      "t": 6,
+      "href": "ntId%2522%253A%2522%2522%252C%2522savedAt%2522%253A1789702301149%257D#",
+      "ecPage": false,
+      "hasComposer": true,
+      "hasView": false,
+      "viewportText": null,
+      "newTitles": [],
+      "modal": []
+    },
+    {
+      "t": 7,
+      "href": "ntId%2522%253A%2522%2522%252C%2522savedAt%2522%253A1789702301149%257D#",
+      "ecPage": false,
+      "hasComposer": true,
+      "hasView": false,
+      "viewportText": null,
+      "newTitles": [],
+      "modal": []
+    },
+    {
+      "t": 8,
+      "href": "ntId%2522%253A%2522%2522%252C%2522savedAt%2522%253A1789702301149%257D#",
+      "ecPage": false,
+      "hasComposer": true,
+      "hasView": false,
+      "viewportText": null,
+      "newTitles": [],
+      "modal": []
+    }
+  ]
+}

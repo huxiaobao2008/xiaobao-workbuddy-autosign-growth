@@ -1,0 +1,30 @@
+Traceback (most recent call last):
+  File "D:\workbuddy\2026-09-19-00-30-03\buddy-auto\ui_tasks.py", line 1461, in <module>
+    sys.exit(main())
+             ~~~~^^
+  File "D:\workbuddy\2026-09-19-00-30-03\buddy-auto\ui_tasks.py", line 1453, in main
+    print(json.dumps(run_probe(rest[0], *rest[1:]), ensure_ascii=False, indent=2))
+                     ~~~~~~~~~^^^^^^^^^^^^^^^^^^^^
+  File "D:\workbuddy\2026-09-19-00-30-03\buddy-auto\ui_tasks.py", line 788, in run_probe
+    return U.js(code, timeout=timeout)
+           ~~~~^^^^^^^^^^^^^^^^^^^^^^^
+  File "D:\workbuddy\2026-09-19-00-30-03\buddy-auto\ui_driver.py", line 408, in js
+    return cdp.evaluate(wrapped, timeout=timeout)
+           ~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "D:\workbuddy\2026-09-19-00-30-03\buddy-auto\cdp.py", line 214, in evaluate
+    r = self.call("Runtime.evaluate", {
+        "expression": expr,
+    ...<2 lines>...
+        "userGesture": True,
+    }, timeout=timeout)
+  File "D:\workbuddy\2026-09-19-00-30-03\buddy-auto\cdp.py", line 194, in call
+    raw = self.ws.recv_text()
+  File "D:\workbuddy\2026-09-19-00-30-03\buddy-auto\cdp.py", line 121, in recv_text
+    fin, opcode, payload = self._read_frame()
+                           ~~~~~~~~~~~~~~~~^^
+  File "D:\workbuddy\2026-09-19-00-30-03\buddy-auto\cdp.py", line 102, in _read_frame
+    b0, b1 = self._read(2)
+             ~~~~~~~~~~^^^
+  File "D:\workbuddy\2026-09-19-00-30-03\buddy-auto\cdp.py", line 94, in _read
+    chunk = self.sock.recv(max(4096, n - len(self._buf)))
+TimeoutError: timed out

@@ -1,0 +1,38 @@
+# 凭证与登录态（绝不入库）
+accounts/
+config.json
+*.cred.json
+*.info
+auth_backups/
+
+# 运行数据
+logs/
+tasks_state.json
+team_state.json
+tasks.jsonl
+__pycache__/
+*.pyc
+*.pyo
+
+# 根目录与 research 的运行日志/文本（含手机号等个人信息，不入库）
+/*.log
+/*.txt
+/*.jsonl
+research/*.log
+research/*.txt
+
+# 本地环境
+.workbuddy/
+.env
+.venv/
+venv/
+
+# 编辑器/系统
+.vscode/
+.idea/
+Thumbs.db
+desktop.ini
+
+# 打包产物（zip 可单独发布）
+skill-build/dist/
+*.zip

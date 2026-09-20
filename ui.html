@@ -1,0 +1,589 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Buddy 账号管理 · 签到与成长任务</title>
+<style>
+  :root{
+    --bg:#f6f7f9; --card:#ffffff; --line:#e5e7eb; --line-soft:#f0f1f4;
+    --text:#1f2328; --muted:#6b7280; --accent:#2563eb; --accent-soft:#eff4ff;
+    --ok:#15803d; --ok-soft:#eaf7ee; --warn:#b45309; --warn-soft:#fdf3e3;
+    --danger:#b91c1c; --danger-soft:#fdecec; --radius:10px;
+  }
+  *{box-sizing:border-box}
+  body{margin:0;background:var(--bg);color:var(--text);
+    font:14px/1.6 -apple-system,"Segoe UI","Microsoft YaHei",sans-serif;}
+  .wrap{max-width:1080px;margin:0 auto;padding:24px 20px 60px}
+  header{display:flex;align-items:flex-end;justify-content:space-between;gap:16px;flex-wrap:wrap;margin-bottom:18px}
+  h1{margin:0;font-size:20px;font-weight:650}
+  .sub{color:var(--muted);font-size:12.5px;margin-top:4px}
+  .stats{display:flex;gap:10px;flex-wrap:wrap}
+  .stat{background:var(--card);border:1px solid var(--line);border-radius:var(--radius);padding:8px 14px;min-width:92px}
+  .stat b{display:block;font-size:19px;font-weight:650;line-height:1.3}
+  .stat span{color:var(--muted);font-size:12px}
+  .bar{display:flex;gap:8px;flex-wrap:wrap;margin:14px 0}
+  button{font:inherit;border:1px solid var(--line);background:var(--card);color:var(--text);
+    padding:6px 13px;border-radius:8px;cursor:pointer;transition:.15s}
+  button:hover:not(:disabled){border-color:var(--accent);color:var(--accent)}
+  button:disabled{opacity:.5;cursor:not-allowed}
+  button.primary{background:var(--accent);border-color:var(--accent);color:#fff}
+  button.primary:hover:not(:disabled){background:#1d4ed8;color:#fff}
+  button.ghost{background:transparent}
+  button.danger{background:var(--danger);border-color:var(--danger);color:#fff}
+  button.danger:hover:not(:disabled){background:#991b1b;border-color:#991b1b;color:#fff}
+  button.danger.ghost{background:transparent;color:var(--danger)}
+  button.danger.ghost:hover:not(:disabled){background:var(--danger-soft);border-color:var(--danger)}
+  .card{background:var(--card);border:1px solid var(--line);border-radius:var(--radius);margin-bottom:18px;overflow:hidden}
+  .card>h2{margin:0;padding:13px 16px;font-size:14.5px;font-weight:650;border-bottom:1px solid var(--line-soft)}
+  .card>h2 small{color:var(--muted);font-weight:400;margin-left:8px}
+  .empty{padding:26px 16px;color:var(--muted);text-align:center;font-size:13px}
+  table{width:100%;border-collapse:collapse}
+  th,td{padding:10px 16px;text-align:left;vertical-align:middle;border-bottom:1px solid var(--line-soft)}
+  th{font-size:12px;font-weight:600;color:var(--muted);background:#fafbfc}
+  tr:last-child td{border-bottom:none}
+  .uid{color:var(--muted);font-size:12px;font-family:ui-monospace,Consolas,monospace}
+  .nick{font-weight:600}
+  .tag{display:inline-block;padding:1px 8px;border-radius:20px;font-size:12px;line-height:1.7}
+  .tag.ok{background:var(--ok-soft);color:var(--ok)}
+  .tag.warn{background:var(--warn-soft);color:var(--warn)}
+  .tag.danger{background:var(--danger-soft);color:var(--danger)}
+  .tag.mute{background:#f1f2f4;color:var(--muted)}
+  .credits{font-variant-numeric:tabular-nums}
+  .credits b{font-size:15px}
+  .credits span{color:var(--muted);font-size:12px}
+  .ops{display:flex;gap:6px;flex-wrap:wrap}
+  .ops button{padding:4px 10px;font-size:12.5px}
+  .accrow{cursor:pointer}
+  .accrow:hover{background:#fafbfc}
+  .accrow.active{background:var(--accent-soft)}
+  .accrow.active td:first-child{border-left:3px solid var(--accent);padding-left:13px}
+  .tasks{margin:0;padding:12px 16px 16px;background:#fbfcfd;border-top:1px solid var(--line-soft)}
+  .tasks h3{margin:0 0 8px;font-size:13px;color:var(--muted);font-weight:600}
+  .tasks table{background:var(--card);border:1px solid var(--line);border-radius:8px}
+  .tasks th,.tasks td{padding:7px 12px;font-size:12.5px}
+  .tasks th{background:#fafbfc}
+  .grp{margin:6px 0 2px;font-size:12px;color:var(--muted)}
+  .bar-mini{display:flex;gap:6px;align-items:center;margin:0 0 10px}
+  .bar-mini .sp{flex:1}
+  .pending{color:var(--warn);font-size:12px}
+  .note{padding:10px 16px;background:var(--warn-soft);color:var(--warn);font-size:12.5px;border-bottom:1px solid var(--line-soft)}
+  .note:last-child{border-bottom:none}
+  #toast{position:fixed;left:50%;bottom:28px;transform:translateX(-50%);
+    background:#1f2328;color:#fff;padding:10px 18px;border-radius:8px;font-size:13px;
+    opacity:0;pointer-events:none;transition:.25s;max-width:80%;text-align:center}
+  #toast.show{opacity:.96}
+  .loading{color:var(--muted);font-size:13px;padding:16px}
+  .clientbar{display:flex;align-items:center;gap:12px;flex-wrap:wrap}
+  .clientbar .who{font-size:15px;font-weight:650}
+  .clientbar .who small{color:var(--muted);font-weight:400;margin-left:6px;font-size:12.5px}
+  .clientbar .sp{flex:1}
+  .clientbar.off{color:var(--warn)}
+  .tag.now{background:var(--accent-soft);color:var(--accent);font-weight:600}
+  button.switch{background:var(--accent);border-color:var(--accent);color:#fff}
+  button.switch:hover:not(:disabled){background:#1d4ed8;color:#fff}
+  button.now{background:transparent;border-color:var(--accent);color:var(--accent);cursor:default}
+  .modegrp{display:inline-flex;align-items:center;gap:6px;padding:3px 6px;border:1px solid var(--line);border-radius:9px;background:var(--card)}
+  .modegrp .mode-label{font-size:12px;color:var(--muted);padding:0 2px}
+  .modegrp button{padding:4px 13px;border:none;background:transparent;color:var(--muted)}
+  .modegrp button.primary{background:var(--accent);color:#fff}
+  .modegrp button.primary:hover:not(:disabled){background:#1d4ed8;color:#fff}
+  .pbar{height:6px;background:#eef0f3;border-radius:4px;overflow:hidden;margin-top:3px}
+  .pbar>i{display:block;height:100%;border-radius:4px}
+  .pcell{min-width:130px}
+  .pcell .top{display:flex;justify-content:space-between;font-size:12px;margin-bottom:1px}
+</style>
+</head>
+<body>
+<div class="wrap">
+  <header>
+    <div>
+      <h1>Buddy 账号管理</h1>
+      <div class="sub" id="sub">加载中…</div>
+    </div>
+    <div class="stats">
+      <div class="stat"><b id="s-accounts">-</b><span>已添加账号</span></div>
+      <div class="stat"><b id="s-signed">-</b><span>今日已签</span></div>
+      <div class="stat"><b id="s-credits">-</b><span>累计积分</span></div>
+      <div class="stat"><b id="s-remain">-</b><span>总剩余积分</span></div>
+    </div>
+  </header>
+
+  <div class="bar">
+    <span class="modegrp">
+      <span class="mode-label">执行模式</span>
+      <button id="modeManual" class="primary" onclick="setMode(false)">手动</button>
+      <button id="modeAuto" onclick="setMode(true)">自动</button>
+    </span>
+    <button class="primary" onclick="runAll()" id="btn-runall">一键全自动（全部账号·智能跳过已完成）</button>
+    <button class="danger" onclick="stopAll()" id="btn-stop" title="立即停止正在跑的任务（最多等约 10 秒收手）">停止任务</button>
+    <button onclick="act('capture-all',{})">一键续期全部凭证</button>
+    <button onclick="act('open-client',{})">打开客户端登录</button>
+    <button onclick="act('sync',{})">扫描新账号</button>
+    <button class="ghost" onclick="load()">刷新</button>
+  </div>
+  <div class="sub" id="modehint" style="margin:-4px 0 2px"></div>
+
+  <div class="card">
+    <h2>客户端当前登录 <small>UI 驱动的成长任务会在这个账号下执行；点账号行的「切换登录」可换号</small></h2>
+    <div style="padding:12px 16px"><div class="clientbar" id="clientbar"><span class="loading">检测中…</span></div></div>
+  </div>
+
+  <div class="card" id="runallcard" style="display:none">
+    <h2>一键全自动进度 <small id="runallstate"></small></h2>
+    <pre id="runalllog" style="margin:0;padding:12px 16px;max-height:380px;overflow:auto;white-space:pre-wrap;font:12.5px/1.55 ui-monospace,Consolas,monospace;background:#0b1020;color:#e6edf3"></pre>
+  </div>
+
+  <div class="card" id="acctjobcard" style="display:none">
+    <h2>本账号执行进度 <small id="acctjobstate"></small></h2>
+    <pre id="acctjoblog" style="margin:0;padding:12px 16px;max-height:380px;overflow:auto;white-space:pre-wrap;font:12.5px/1.55 ui-monospace,Consolas,monospace;background:#0b1020;color:#e6edf3"></pre>
+  </div>
+
+  <div id="warnings"></div>
+
+  <div class="card">
+    <h2>已登录账号 <small>从本机登录态读取，点「添加」写入账号列表</small></h2>
+    <div id="discovered"><div class="loading">加载中…</div></div>
+  </div>
+
+  <div class="card">
+    <h2>账号列表 <small>config.json，定时任务的依据</small></h2>
+    <div id="accounts"><div class="loading">加载中…</div></div>
+  </div>
+</div>
+<div id="toast"></div>
+
+<script>
+const $ = id => document.getElementById(id);
+let toastTimer;
+
+function toast(msg){
+  const t = $('toast');
+  t.textContent = msg;
+  t.classList.add('show');
+  clearTimeout(toastTimer);
+  toastTimer = setTimeout(()=>t.classList.remove('show'), 2600);
+}
+
+function esc(s){
+  return String(s==null?'':s).replace(/[&<>"]/g, c=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;'}[c]));
+}
+
+function shortUid(uid){
+  return uid ? uid.slice(0,8) + '…' : '—';
+}
+
+function credCell(c, b){
+  c = c || {}; b = b || {};
+  if (c.err) return `<span class="tag danger" title="${esc(c.err)}">查询失败</span>`;
+  let h = '';
+  if (c.total_credits != null)
+    h += `<div class="credits"><b>${c.total_credits}</b> <span>累计 · 连续 ${c.streak_days ?? '—'} 天 · ` +
+         `${c.signed ? '今日已签' : '今日未签'}</span></div>`;
+  if (b.err)
+    h += `<div class="credits" style="margin-top:2px"><span title="${esc(b.err)}">剩余 —</span></div>`;
+  else if (b.remaining != null)
+    h += `<div class="credits" style="margin-top:2px"><b>${Number(b.remaining).toFixed(2)}</b> <span>剩余</span></div>`;
+  return h || '<span class="tag mute">无数据</span>';
+}
+
+function renderDiscovered(list){
+  const box = $('discovered');
+  if (!list.length){
+    box.innerHTML = `<div class="empty">本机没有读到任何登录态。<br>
+      请先打开 WorkBuddy 客户端登录微信账号（上方「打开客户端登录」），登录后点「刷新」。</div>`;
+    return;
+  }
+  let html = `<table><thead><tr>
+      <th>账号</th><th>标识 UID</th><th>积分 / 连续</th><th>登录态</th><th>操作</th>
+    </tr></thead><tbody>`;
+  for (const d of list){
+    const added = d.in_config;
+    const op = added
+      ? `<button disabled>已添加 · ${esc(d.config_key)}</button>`
+      : `<button class="primary" onclick="act('add',{uid:'${d.uid}'})">添加</button>`;
+    const exp = d.expired
+      ? '<span class="tag danger">已过期</span>'
+      : (d.expiry_days == null ? '<span class="tag mute">未知</span>'
+        : `<span class="tag ${d.expiry_days<7?'warn':'ok'}">剩 ${d.expiry_days} 天</span>`);
+    html += `<tr>
+      <td><div class="nick">${esc(d.nickname || '(无昵称)')}</div>
+          <div class="uid">${esc(d.phone || '')} · 保存于 ${esc(d.saved_at)}</div></td>
+      <td class="uid">${shortUid(d.uid)}</td>
+      <td>${credCell(d.credits)}</td>
+      <td>${exp}</td>
+      <td><div class="ops">${op}</div></td>
+    </tr>`;
+  }
+  box.innerHTML = html + '</tbody></table>';
+}
+
+function taskRows(list, key){
+  if (!list.length) return '<div class="empty">没有读到成长任务</div>';
+  const done = list.filter(t=>t.done), undone = list.filter(t=>!t.done);
+  const row = t => `<tr>
+      <td><div class="nick">${esc(t.title)}${t.paid ? ' <span class="tag danger">需付费</span>' : ''}</div><div class="uid">${esc(t.code)}</div></td>
+      <td><span class="tag ${t.paid?'danger':(t.done?'ok':(t.claimable?'warn':'mute'))}">${esc(t.status_label)}</span></td>
+      <td class="uid">${esc(t.progress_text)}</td>
+      <td>${t.paid ? '—' : (t.reward_credit ? '+'+t.reward_credit : '—')}</td>
+      <td><div class="ops">
+        ${t.paid ? `<button disabled>已跳过（需付费）</button>` : ''}
+        ${(!t.paid && t.accept_needed) ? `<button onclick="taskAct('${key}','${t.code}','accept',event)">接取</button>` : ''}
+        ${(!t.paid && t.claimable) ? `<button class="primary" onclick="taskAct('${key}','${t.code}','claim',event)">领取</button>` : ''}
+        ${(!t.paid && t.done) ? '<button disabled>已领取</button>' : ''}
+        ${(!t.paid && !t.done && !t.claimable && !t.accept_needed) ? '<button disabled>待完成</button>' : ''}
+      </div></td>
+    </tr>`;
+  const avail = undone.filter(t=>!t.locked&&!t.expired&&!t.paid);
+  const paidCnt = undone.filter(t=>t.paid).length;
+  return `<div class="grp">未完成 ${undone.length} 个（可得 ${avail.reduce((s,t)=>s+t.reward_credit,0)} 积分）${paidCnt ? '　其中 '+paidCnt+' 个需付费已跳过' : ''}</div>
+    <table><thead><tr><th>任务</th><th>状态</th><th>进度</th><th>可得积分</th><th>操作</th></tr></thead>
+    <tbody>${undone.map(row).join('') || '<tr><td colspan="5" class="uid">全部完成</td></tr>'}</tbody></table>
+    <div class="grp" style="margin-top:12px">已完成 ${done.length} 个</div>
+    <table><thead><tr><th>任务</th><th>状态</th><th>进度</th><th>可得积分</th><th>操作</th></tr></thead>
+    <tbody>${done.map(row).join('')}</tbody></table>`;
+}
+
+function taskBox(a){
+  const s = a.task_summary || {};
+  return `<div class="tasks">
+    <div class="bar-mini">
+      <h3 style="margin:0">成长任务</h3>
+      <span class="uid">已完成 ${s.done||0}/${s.total||0}</span>
+      ${a.profile && a.profile.level ? `<span class="uid">等级 ${a.profile.level}</span>` : ''}
+      ${s.pending_credit ? `<span class="pending">待领 ${s.pending_credit} 积分</span>` : ''}
+      <span class="sp"></span>
+      <button class="primary" onclick="runAccount('${a.key}')">执行本账号</button>
+    </div>
+    ${a.task_error ? `<div class="note" style="margin-bottom:8px">${esc(a.task_error)}</div>` : ''}
+    ${taskRows(a.tasks||[], a.key)}
+  </div>`;
+}
+
+function progressCell(s){
+  s = s || {};
+  if (!s.total) return '<span class="tag mute">无数据</span>';
+  const pct = Math.round(100 * s.done / s.total);
+  const full = s.done === s.total;
+  const color = full ? 'var(--ok)' : 'var(--accent)';
+  let extra = '';
+  if (s.pending_credit) extra += ` · <span class="pending">可领 ${s.pending_credit}</span>`;
+  if (s.potential_credit) extra += ` · <span class="tag mute">待完成 ${s.potential_credit}</span>`;
+  return `<div class="pcell">
+    <div class="top"><b>${s.done}/${s.total}</b><span class="${full?'tag ok':'tag mute'}" style="padding:0 6px">${full?'已完成':'完成度 '+pct+'%'}</span></div>
+    <div class="pbar"><i style="width:${pct}%;background:${color}"></i></div>
+    <div class="uid" style="margin-top:2px">${extra || '无待领积分'}</div>
+  </div>`;
+}
+
+function renderAccounts(list){
+  const box = $('accounts');
+  if (!list.length){
+    box.innerHTML = `<div class="empty">账号列表为空，请从上方的「已登录账号」中点「添加」。</div>`;
+    return;
+  }
+  let html = `<table><thead><tr>
+      <th>账号</th><th>标识 UID</th><th>积分 / 连续</th><th>成长任务</th><th>凭证</th><th>执行时间</th><th>操作</th>
+    </tr></thead><tbody>`;
+  for (const a of list){
+    const cred = !a.cred_ok
+      ? `<span class="tag danger" title="${esc(a.cred_error)}">无凭证</span>`
+      : (a.cred_expired ? '<span class="tag danger">已过期</span>'
+        : `<span class="tag ${a.cred_expiry_days<7?'warn':'ok'}">剩 ${a.cred_expiry_days} 天</span>`);
+    const s = a.task_summary || {};
+    const active = a.key === VIEW_KEY;
+    html += `<tr class="accrow ${active?'active':''}" onclick="toggleView('${a.key}',event)">
+      <td><div class="nick">${esc(a.label || a.key)}
+            ${a.is_current_client ? ' <span class="tag now">客户端当前</span>' : ''}
+            ${a.enabled ? '' : ' <span class="tag mute">已停用</span>'}
+            ${s.total && s.done===s.total ? ' <span class="tag ok">已完成</span>' : ''}
+            ${active ? ' <span class="tag mute">已展开</span>' : ''}</div>
+          <div class="uid">${esc(a.nickname || '')} · ${esc(a.key)}</div></td>
+      <td class="uid">${shortUid(a.uid)}</td>
+      <td>${credCell(a.credits, a.balance)}</td>
+      <td>${progressCell(s)}</td>
+      <td>${cred}</td>
+      <td>${esc((a.times||[]).join('、') || '—')}</td>
+      <td><div class="ops" onclick="event.stopPropagation()">
+        <button class="${a.is_current_client?'now':'switch'}" ${a.is_current_client?'disabled':''} onclick="clientSwitch('${a.key}',event)">${a.is_current_client?'已登录':'切换登录'}</button>
+        <button class="primary" onclick="runAccount('${a.key}')">执行本账号</button>
+        <button onclick="act('capture',{key:'${a.key}'})">登录/续期</button>
+        <button onclick="act('toggle',{key:'${a.key}',enabled:${!a.enabled}})">${a.enabled?'停用':'启用'}</button>
+        <button class="danger ghost" onclick="del('${a.key}')">移除</button>
+      </div></td>
+    </tr>`;
+    if (active){
+      html += `<tr><td colspan="7" style="padding:0">${taskBox(a)}</td></tr>`;
+    }
+  }
+  box.innerHTML = html + '</tbody></table>';
+}
+
+let VIEW_KEY = '';      // 当前展开任务面板的账号（仅界面内查看，不切换客户端登录）
+let CLIENT_KEY = '';    // 客户端当前实际登录的账号 key
+let MAIN_KEY = '';      // 主号（回主号用）
+let AUTO_MODE = false;  // 手动/自动模式（auto_mode=true 表示自动）
+let acctJobTimer = null; // 本账号执行进度轮询定时器
+
+function applyState(s, opts){
+  opts = opts || {};
+  $('sub').textContent = '数据更新于 ' + s.generated_at +
+    (s.schedule && s.schedule.trigger_mode === 'interval'
+      ? ` · 每 ${s.schedule.every_minutes} 分钟循环` : ' · 每日定点执行');
+  $('s-accounts').textContent = s.totals.accounts;
+  $('s-signed').textContent = s.totals.signed_today;
+  $('s-credits').textContent = s.totals.total_credits;
+  const rem = s.totals.remaining_credits;
+  const remEl = $('s-remain');
+  remEl.textContent = (rem == null) ? '—' : Number(rem).toFixed(2);
+  const unk = s.totals.remaining_unknown || [];
+  remEl.title = unk.length ? '未能读取余额：' + unk.join('、') : '各账号剩余额度之和';
+  if (!opts.keepView) VIEW_KEY = '';   // 默认收起，点账号行才展开
+  CLIENT_KEY = (s.client_current && s.client_current.key) || '';
+  MAIN_KEY = (s.accounts[0] && s.accounts[0].key) || '';
+  AUTO_MODE = !!s.auto_mode;
+  applyModeUI();
+  renderClientBar(s.client_current);
+  $('warnings').innerHTML = (s.warnings||[]).map(w=>`<div class="note">${esc(w)}</div>`).join('');
+  renderDiscovered(s.discovered);
+  renderAccounts(s.accounts);
+}
+
+async function load(opts){
+  opts = opts || {};
+  try{
+    const res = await fetch('/api/state');
+    const s = await res.json();
+    if (s.ok === false){ if (!opts.silent) toast('读取失败：' + s.error); return; }
+    applyState(s, opts);
+  }catch(e){
+    if (!opts.silent) toast('无法连接本地服务：' + e);
+  }
+}
+
+function renderClientBar(cc){
+  const box = $('clientbar');
+  if (!box) return;
+  if (!cc || !cc.reachable){
+    box.className = 'clientbar off';
+    box.innerHTML = `<span class="who">未检测到客户端登录状态</span>` +
+      `<small>客户端未打开或未带调试端口（双击 restart-cdp.cmd 启动）</small>` +
+      `<span class="sp"></span>` +
+      (MAIN_KEY ? `<button onclick="restoreMain()">回主号</button>` : '');
+    return;
+  }
+  box.className = 'clientbar';
+  const who = cc.menu ? esc(cc.menu) : '(未知昵称)';
+  const same = cc.key ? ` · <span class="uid">${esc(cc.key)}</span>` : '';
+  box.innerHTML = `<span class="who">${who}${same}</span>` +
+    `<small>这就是当前真正登录客户端的账号</small>` +
+    `<span class="sp"></span>` +
+    (MAIN_KEY ? `<button onclick="restoreMain()">回主号</button>` : '');
+}
+
+async function toggleView(key, ev){
+  if (ev) ev.stopPropagation();
+  const opening = (VIEW_KEY !== key);
+  VIEW_KEY = opening ? key : '';   // 仅展开/收起任务面板，不碰客户端登录
+  // 本地重渲染即可，无需请求服务端
+  try{
+    const res = await fetch('/api/state');
+    const s = await res.json();
+    if (s.accounts) renderAccounts(s.accounts);
+  }catch(e){ /* 本地切换失败也不影响展开，忽略 */ }
+  // 自动模式：点开某账号 = 顺手执行该账号（手动模式只展开，需显式点「执行本账号」）
+  if (opening && AUTO_MODE && !acctJobTimer && !runAllTimer){
+    runAccount(key);
+  }
+}
+
+async function clientSwitch(key, ev){
+  if (ev) ev.stopPropagation();
+  toast('正在切换客户端登录到 ' + key + ' …');
+  try{
+    const res = await fetch('/api/client-switch', {method:'POST', headers:{'Content-Type':'application/json'},
+      body: JSON.stringify({key})});
+    const r = await res.json();
+    if (r.ok){
+      toast(r.message || '已切换');
+    }else{
+      toast('切换失败：' + (r.error || '未知错误'));
+      if (r.need_client && r.hint) toast(r.hint);
+    }
+    load();
+  }catch(e){ toast('切换请求失败：' + e); }
+}
+
+async function restoreMain(){
+  if (!MAIN_KEY){ toast('没有可用的主号'); return; }
+  await clientSwitch(MAIN_KEY);
+}
+
+let runAllTimer = null;
+
+// 停止任务：写跨进程停止标记，run_all / UI 驱动会在下一个检查点收手。
+// 单个 UI 任务最长可能在等 AI 回复 —— 轮询已改成 10 秒一段，所以最多约 10 秒就停。
+async function stopAll(){
+  if (!confirm('确定要停止正在跑的任务吗？\n已经完成的签到/任务/领积分都会保留，未跑完的直接跳过。')) return;
+  const b = $('btn-stop');
+  if (b){ b.disabled = true; b.innerHTML = '停止中…'; }
+  try{
+    const res = await fetch('/api/stop', {method:'POST', headers:{'Content-Type':'application/json'}, body:'{}'});
+    const r = await res.json();
+    toast(r.ok ? (r.message || '已发出停止指令') : ('停止失败：' + (r.error || '未知错误')));
+  }catch(e){ toast('请求失败：' + e); }
+  finally{
+    setTimeout(() => { if (b){ b.disabled = false; b.innerHTML = '停止任务'; } }, 1500);
+  }
+}
+
+async function runAll(){
+  if (runAllTimer){ toast('全自动任务进行中，请稍候'); return; }
+  try{
+    const res = await fetch('/api/run-all', {method:'POST', headers:{'Content-Type':'application/json'}, body:'{}'});
+    const r = await res.json();
+    if (r.ok){
+      toast(r.message || '已启动一键全自动');
+      pollRunAll();
+    }else{
+      toast('启动失败：' + (r.error || '未知错误'));
+    }
+  }catch(e){ toast('请求失败：' + e); }
+}
+
+function pollRunAll(){
+  const card = $('runallcard');
+  if (card) card.style.display = '';
+  runAllTimer = setInterval(async () => {
+    try{
+      const res = await fetch('/api/state');
+      const s = await res.json();
+      if (s.accounts) applyState(s, {keepView:true});   // 整页同步「客户端当前」与账号任务进度
+      const ra = s.run_all || {};
+      const st = $('runallstate');
+      if (st) st.textContent = ra.running ? (s.stopping ? '停止中…' : '运行中…') : '已完成';
+      const lg = $('runalllog');
+      if (lg) lg.textContent = ra.tail || '(暂无输出)';
+      if (!ra.running){
+        clearInterval(runAllTimer);
+        runAllTimer = null;
+        toast('全自动执行完成');
+        load({keepView:true});
+      }
+    }catch(e){ /* 轮询失败忽略，继续等 */ }
+  }, 3000);
+}
+
+async function taskAct(key, code, action, ev){
+  if (ev) ev.stopPropagation();
+  toast('执行中…');
+  try{
+    const res = await fetch('/api/task', {method:'POST', headers:{'Content-Type':'application/json'},
+      body: JSON.stringify({key, code, action})});
+    const r = await res.json();
+    toast(r.ok ? (r.message || '完成') : ('失败：' + (r.error || '未知错误')));
+    load();
+  }catch(e){ toast('请求失败：' + e); }
+}
+
+async function act(name, payload){
+  const label = {add:'添加',run:'执行','capture-all':'续期','capture':'登录/续期',
+                 'open-client':'打开客户端',toggle:'切换状态'}[name] || name;
+  toast(label + '中…');
+  try{
+    const res = await fetch('/api/' + name, {
+      method:'POST', headers:{'Content-Type':'application/json'},
+      body: JSON.stringify(payload)
+    });
+    const r = await res.json();
+    if (r.ok === false){
+      toast('失败：' + (r.error || '未知错误'));
+      if (r.need_login) toast(r.hint || '请先打开客户端登录该账号');
+    }else{
+      toast(r.message || '完成');
+    }
+    if (r.results){
+      const ok = r.results.filter(x=>x.status==='success').length;
+      if (r.results.length > 1) toast(`执行完成：${ok}/${r.results.length} 个账号成功`);
+    }
+    load();
+  }catch(e){
+    toast('请求失败：' + e);
+  }
+}
+
+function del(key){
+  if (!confirm(`确定把 ${key} 从账号列表移除？（凭证文件会保留）`)) return;
+  act('remove', {key});
+}
+
+async function setMode(auto){
+  try{
+    const res = await fetch('/api/set-mode', {method:'POST', headers:{'Content-Type':'application/json'},
+      body: JSON.stringify({auto: !!auto})});
+    const r = await res.json();
+    AUTO_MODE = !!r.auto_mode;
+    toast(r.message || ('已切到' + (AUTO_MODE ? '自动' : '手动') + '模式'));
+    applyModeUI();
+    load();
+  }catch(e){ toast('切换模式失败：' + e); }
+}
+
+function applyModeUI(){
+  const m = $('modeManual'), a = $('modeAuto');
+  if (m) m.className = AUTO_MODE ? '' : 'primary';
+  if (a) a.className = AUTO_MODE ? 'primary' : '';
+  const hint = $('modehint');
+  if (hint) hint.textContent = AUTO_MODE
+    ? '自动模式：点某个账号行会直接执行该账号，无需再点按钮；「一键全自动」按顺序跑所有账号。'
+    : '手动模式：点账号行只展开查看／勾选任务；要执行请点该行「执行本账号」，或点「一键全自动」跑全部账号。';
+}
+
+async function runAccount(key){
+  if (acctJobTimer || runAllTimer){ toast('已有任务正在执行，请稍候'); return; }
+  try{
+    const res = await fetch('/api/run-account', {method:'POST', headers:{'Content-Type':'application/json'},
+      body: JSON.stringify({key})});
+    const r = await res.json();
+    if (r.ok){ toast(r.message || ('已启动 ' + key)); pollAcctJob(); }
+    else { toast('启动失败：' + (r.error || '未知错误')); }
+  }catch(e){ toast('请求失败：' + e); }
+}
+
+function pollAcctJob(){
+  const card = $('acctjobcard');
+  if (card) card.style.display = '';
+  if (acctJobTimer) clearInterval(acctJobTimer);
+  acctJobTimer = setInterval(async () => {
+    try{
+      const res = await fetch('/api/state');
+      const s = await res.json();
+      if (s.accounts) applyState(s, {keepView:true});   // 整页同步（含「客户端当前」与任务进度）
+      const j = s.acct_job || {};
+      const st = $('acctjobstate');
+      if (st) st.textContent = (j.label || j.key || '')
+        + (j.running ? (s.stopping ? ' · 停止中…' : ' · 运行中…') : ' · 已完成');
+      const lg = $('acctjoblog');
+      if (lg) lg.textContent = j.tail || '(暂无输出)';
+      if (!j.running){
+        clearInterval(acctJobTimer);
+        acctJobTimer = null;
+        const rr = j.result || {};
+        if (rr.ok) toast('本账号执行完成，本次领取 ' + (rr.credit_got || 0) + ' 积分');
+        else if (rr.error) toast('执行结束：' + rr.error);
+        load({keepView:true});
+      }
+    }catch(e){ /* 轮询失败忽略，继续等 */ }
+  }, 3000);
+}
+
+// 空闲时每 10 秒自动同步一次（保持「客户端当前登录」与各账号任务进度实时；
+// 有任务在跑时由 runAllTimer/acctJobTimer 负责，避免重复请求）
+setInterval(() => {
+  if (!runAllTimer && !acctJobTimer) load({keepView:true, silent:true});
+}, 10000);
+
+load();
+</script>
+</body>
+</html>

@@ -1,0 +1,33 @@
+{
+  "ovFound": true,
+  "ovHtml": "<div class=\"_dialogOverlay_peiew_7 ec-team-summon-confirm-overlay\" data-theme=\"light\" data-appearance=\"default\"><div class=\"_dialogContainer_peiew_21\"><button class=\"cb-button cb-button--ghost cb-button--small cb-button--icon-only _dialogClose_peiew_64\" aria-label=\"关闭\"><svg width=\"12\" height=\"12\" viewBox=\"0 0 12 12\" fill=\"none\" xmlns=\"http://www.w3.org/2000/svg\"><path d=\"M9.375 2.625L2.625 9.375\" stroke=\"currentColor\" stroke-width=\"0.975\" stroke-linecap=\"round\" stroke-linejoin=\"round\"></path><path d=\"M9.375 9.375L2.625 2.625\" stroke=\"currentColor\" stroke-width=\"0.975\" stroke-linecap=\"round\" stroke-linejoin=\"round\"></path></svg></button><div class=\"_dialogHeader_peiew_72\">积分消耗提醒</div><div class=\"_dialogContent_peiew_56\"><div class=\"ec-confirm-dialog-content\"><div>专家团可能会调用多位专家协同执行，积分消耗通常为单个专家的数倍。请确认您已了解专家团更高的积分消耗，并确保账户积分充足。</div><label class=\"ec-confirm-dialog-checkbox\"><input type=\"checkbox\"><span>我已知悉并确认</span></label></div></div><div class=\"_dialogFooter_peiew_116 _dialogFooterAlignCenter_peiew_127\"><div class=\"_footerButtons_peiew_136 _footerButtonsAlignCenter_peiew_164\"><button class=\"cb-button cb-button--primary cb-button--medium cb-button--disabled\" disabled=\"\" data-track-id=\"expert_team_confirm_continue\" data-track-name=\"确认继续使用\" data-track-props=\"{&quot;source&quot;:&quot;MvpDevExpertTeam&quot;}\" style=\"width: 96px; background-color: var(--cb-button-dark-background);\"><span class=\"cb-button__content\">继续使用</span></button><button class=\"cb-button cb-button--secondary cb-button--medium _cancelButtonStatic_peiew_153\" data-track-id=\"expert_team_confirm_cancel\" data-track-name=\"确认取消\" data-track-props=\"{&quot;source&quot;:&quot;MvpDevExpertTeam&quot;}\" style=\"width: 96px;\"><span class=\"cb-button__content\">取消</span></button></div></div></div></div>",
+  "inputs": [
+    {
+      "type": "checkbox",
+      "cls": "",
+      "checked": false
+    }
+  ],
+  "checkEls": [
+    {
+      "tag": "label",
+      "cls": "ec-confirm-dialog-checkbox",
+      "t": "我已知悉并确认"
+    }
+  ],
+  "ackEls": [
+    {
+      "tag": "div",
+      "cls": "_dialogContent_peiew_56",
+      "t": "专家团可能会调用多位专家协同执行，积分消耗通常为单个专家的数"
+    },
+    {
+      "tag": "span",
+      "cls": "",
+      "t": "我已知悉并确认"
+    }
+  ],
+  "wrapCls": "ec-confirm-dialog-checkbox",
+  "after1": true,
+  "goDisabled1": false
+}

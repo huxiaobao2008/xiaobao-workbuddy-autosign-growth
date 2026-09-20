@@ -1,0 +1,20 @@
+{
+  "n": 12,
+  "teamName0": "召唤 M MVP开发专家团 特邀专家 说出你的想法，8位专家从调研、设计、编码、",
+  "dlgFound": true,
+  "dlgCls": "_dialogHeader_peiew_72",
+  "checkboxes": [],
+  "dlgButtons": [],
+  "cbLabelCls": null,
+  "afterCheck": [],
+  "goFound": false,
+  "goDisabled": null,
+  "after": {
+    "stillDialog": false,
+    "hasComposer": false,
+    "hasView": false,
+    "stillExpert": true,
+    "newTitles": [],
+    "body": "关于(A) 编辑(E) 窗口(W) 帮助(H) WorkBuddy 5.5.6 发现应用 新建任务 助理 项目 专家·技能·连接器 定时任务 资料库 更多 灵感 任务 (3) 创建 HTML 个人名片画布 13分钟前 制作简单个人名片网页 待确认 制作简洁个人名片网页 空间 (1) 别挡住我的光 后台运行 run_fastapi.py 失败 15661172224 专家 技能 连接器 我的专家 精选场景 开学季 校园求职教练 论文写作导师 校园活动策划与执行顾问 内容创作 内容创作专家团 内容创作专家 小红书运营专家 投资分析 交易分析团队 股票研究专家 腾讯自选股股票投研专家团 法律咨询 法律检索专家 资深合同法务专家 财税合规专家团 小微企业 销售教练 微信公众号运营专家 创业伙伴 电商运营 中国电商运营专家 跨境电商专家 内容变现商业化专家团 数据分析 数据分析报告师 深度研究团队 "
+  }
+}

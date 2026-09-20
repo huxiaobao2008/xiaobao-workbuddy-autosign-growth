@@ -1,0 +1,185 @@
+{
+  "searchInput": {
+    "cls": "wb-input__inner",
+    "ph": "搜索专家职称或描述"
+  },
+  "teamTabFound": true,
+  "teamPageCls": [
+    "ec-page-layout",
+    "ec-main-content",
+    "workbuddy-topbar",
+    "ec-topbar__left",
+    "ec-topbar__right",
+    "ec-search-wrapper",
+    "ec-main-scroll",
+    "ec-featured-scenes-section",
+    "ec-section-title",
+    "ec-featured-scenes-strip",
+    "ec-featured-scene-card",
+    "ec-featured-scene-bg",
+    "ec-featured-scene-overlay",
+    "ec-featured-scene-content",
+    "ec-featured-scene-name",
+    "ec-featured-scene-experts",
+    "ec-featured-scene-expert",
+    "ec-featured-scene-avatar",
+    "ec-featured-scene-expert-name",
+    "ec-featured-scenes-next",
+    "ec-featured-scenes-next-icon",
+    "ec-list-tabs-row",
+    "ec-list-tabs",
+    "ec-list-tab",
+    "ec-list-actions",
+    "ec-sort-group",
+    "ec-sort-btn",
+    "ec-expert-section",
+    "ec-category-tabs-wrap",
+    "ec-category-tabs",
+    "ec-category-tab",
+    "ec-expert-count",
+    "ec-category-tabs-next",
+    "ec-category-tabs-next-icon",
+    "ec-grid-content",
+    "ec-expert-grid",
+    "ec-expert-grid-item",
+    "ec-expert-card",
+    "ec-card-summon-btn",
+    "ec-card-main",
+    "ec-card-head",
+    "ec-card-avatar-sq",
+    "ec-avatar-sq-fallback",
+    "ec-card-body",
+    "ec-card-title-row",
+    "ec-card-role-wrap",
+    "ec-card-role",
+    "ec-card-operational-tag",
+    "[object",
+    "ec-card-operational-tag__text"
+  ],
+  "teamCards": [
+    {
+      "t": "召唤 M MVP开发专家团 特邀专家 说出你的想法，8位专家从调研、设计、编码、测试到部署全流程协作",
+      "btns": [
+        "召唤"
+      ]
+    },
+    {
+      "t": "召唤",
+      "btns": []
+    },
+    {
+      "t": "召唤 软 软件开发团队 高效软件研发团队，产品经理定需求、架构师设计+拆任务、工程师批量实现代码、Q",
+      "btns": [
+        "召唤"
+      ]
+    },
+    {
+      "t": "召唤",
+      "btns": []
+    },
+    {
+      "t": "召唤 交 交易分析团队 Expert Marketplace 13位专业角色分5阶段协作完成投资分析",
+      "btns": [
+        "召唤"
+      ]
+    },
+    {
+      "t": "召唤",
+      "btns": []
+    },
+    {
+      "t": "召唤 内 内容创作专家团 CodeBuddy Teams AI驱动的多模态内容生产团队，从创意策划到",
+      "btns": [
+        "召唤"
+      ]
+    },
+    {
+      "t": "召唤",
+      "btns": []
+    },
+    {
+      "t": "召唤 软 软件工坊 gstack 6位工程专业角色：产品评审、代码审查、安全审计、QA测试、设计系统",
+      "btns": [
+        "召唤"
+      ]
+    },
+    {
+      "t": "召唤",
+      "btns": []
+    },
+    {
+      "t": "召唤 腾 腾讯云技术支持 CloudQ、AndonQ、MigraQ 组队，覆盖云治理、工单问答与跨云",
+      "btns": [
+        "召唤"
+      ]
+    },
+    {
+      "t": "召唤",
+      "btns": []
+    },
+    {
+      "t": "召唤 独 独董会 AI让独董不再是大公司专享。投资、就业或创业的关键决策，都能用模型、搜索与推理获得",
+      "btns": [
+        "召唤"
+      ]
+    },
+    {
+      "t": "召唤",
+      "btns": []
+    },
+    {
+      "t": "召唤 深 深度研究团队 Expert Marketplace 深度研究报告输出，7角色5阶段聚合多源",
+      "btns": [
+        "召唤"
+      ]
+    },
+    {
+      "t": "召唤",
+      "btns": []
+    },
+    {
+      "t": "召唤 智 智数分析专家团 WorkBuddy Team 6人AI数据分析团队，擅长自然语言转SQL、",
+      "btns": [
+        "召唤"
+      ]
+    },
+    {
+      "t": "召唤",
+      "btns": []
+    },
+    {
+      "t": "召唤 M Makers 开发专家团 在 EdgeOne Makers 上构建并部署 Web 应用 —",
+      "btns": [
+        "召唤"
+      ]
+    },
+    {
+      "t": "召唤",
+      "btns": []
+    }
+  ],
+  "teamClasses": [
+    "teams-container",
+    "teams-grid-scroll-content",
+    "teams-content-wrapper",
+    "teams-main-content",
+    "ec-featured-scenes-section",
+    "ec-section-title",
+    "ec-featured-scenes-strip",
+    "ec-featured-scene-card",
+    "ec-featured-scene-bg",
+    "ec-featured-scene-overlay",
+    "ec-featured-scene-content",
+    "ec-featured-scene-name",
+    "ec-featured-scene-experts",
+    "ec-featured-scene-expert",
+    "ec-featured-scene-avatar",
+    "ec-featured-scene-expert-name",
+    "ec-featured-scenes-next",
+    "ec-featured-scenes-next-icon"
+  ],
+  "searchResults": [
+    "召唤 腾 腾讯轻量云专家 腾讯轻量云 Lighthouse 专家：帮你快速创建轻量应用服务器，支持实"
+  ],
+  "searchResultCount": 1
+}

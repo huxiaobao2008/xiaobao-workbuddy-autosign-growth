@@ -1,0 +1,296 @@
+{
+  "steps": [],
+  "sidebar": [
+    "新建任务",
+    "助理",
+    "项目",
+    "专家·技能·连接器",
+    "定时任务",
+    "资料库",
+    "更多 灵感"
+  ],
+  "entry": "专家·技能·连接器",
+  "pageCls": [
+    "expert-center-page",
+    "ec-page-layout",
+    "ec-main-content",
+    "workbuddy-topbar",
+    "ec-topbar__left",
+    "ec-topbar__right",
+    "ec-search-wrapper",
+    "ec-main-scroll",
+    "ec-featured-scenes-section",
+    "ec-section-title",
+    "ec-featured-scenes-strip",
+    "ec-featured-scene-card",
+    "ec-featured-scene-bg",
+    "ec-featured-scene-overlay",
+    "ec-featured-scene-content",
+    "ec-featured-scene-name",
+    "ec-featured-scene-experts",
+    "ec-featured-scene-expert",
+    "ec-featured-scene-avatar",
+    "ec-featured-scene-expert-name",
+    "ec-featured-scenes-next",
+    "ec-featured-scenes-next-icon",
+    "ec-list-tabs-row",
+    "ec-list-tabs",
+    "ec-list-tab",
+    "ec-list-actions",
+    "ec-sort-group",
+    "ec-sort-btn",
+    "ec-expert-section",
+    "ec-category-tabs-wrap",
+    "ec-category-tabs",
+    "ec-category-tab",
+    "ec-expert-count",
+    "ec-category-tabs-next",
+    "ec-category-tabs-next-icon",
+    "ec-grid-content",
+    "ec-expert-grid",
+    "ec-expert-grid-item",
+    "ec-expert-card",
+    "ec-card-summon-btn",
+    "ec-card-main",
+    "ec-card-head",
+    "ec-card-avatar-sq",
+    "ec-avatar-sq-fallback",
+    "ec-card-body",
+    "ec-card-title-row",
+    "ec-card-role-wrap",
+    "ec-card-role",
+    "ec-card-subtitle",
+    "ec-card-desc",
+    "ec-card-tags",
+    "ec-card-tag",
+    "ec-card-operational-tag",
+    "[object",
+    "ec-card-operational-tag__text"
+  ],
+  "tabs": [
+    {
+      "t": "发现应用",
+      "cls": "wb-button wb-button--secondary wb-button--small industry-template-swit"
+    },
+    {
+      "t": "新建任务",
+      "cls": "conversation-list-tab-button conversation-list-tab-button-box"
+    },
+    {
+      "t": "新建任务",
+      "cls": "conversation-list-tab-button-label"
+    },
+    {
+      "t": "助理",
+      "cls": "conversation-list-tab-row"
+    },
+    {
+      "t": "助理",
+      "cls": "conversation-list-tab-button"
+    },
+    {
+      "t": "助理",
+      "cls": "conversation-list-tab-button-label claw-name-ready"
+    },
+    {
+      "t": "项目",
+      "cls": "conversation-list-tab-button conversation-list-tab-button-box"
+    },
+    {
+      "t": "项目",
+      "cls": "conversation-list-tab-button-label"
+    },
+    {
+      "t": "专家·技能·连接器",
+      "cls": "conversation-list-tab-button conversation-list-tab-button-box active"
+    },
+    {
+      "t": "专家·技能·连接器",
+      "cls": "conversation-list-tab-button-label"
+    },
+    {
+      "t": "定时任务",
+      "cls": "conversation-list-tab-button conversation-list-tab-button-box "
+    },
+    {
+      "t": "定时任务",
+      "cls": "conversation-list-tab-button-label"
+    },
+    {
+      "t": "资料库",
+      "cls": "conversation-list-tab-button conversation-list-tab-button-box "
+    },
+    {
+      "t": "资料库",
+      "cls": "conversation-list-tab-button-label"
+    },
+    {
+      "t": "更多 灵感",
+      "cls": "conversation-list-tab-button conversation-list-tab-button-box conversa"
+    },
+    {
+      "t": "更多",
+      "cls": "conversation-list-tab-button-label"
+    },
+    {
+      "t": "灵感",
+      "cls": "conversation-list-tab-button-sub"
+    },
+    {
+      "t": "15661172224",
+      "cls": "user-menu-trigger user-menu-trigger--workbuddy"
+    },
+    {
+      "t": "专家 技能 连接器",
+      "cls": "um-header__tabs"
+    },
+    {
+      "t": "专家",
+      "cls": "um-tab um-tab--active"
+    },
+    {
+      "t": "技能",
+      "cls": "um-tab"
+    },
+    {
+      "t": "连接器",
+      "cls": "um-tab"
+    },
+    {
+      "t": "我的专家",
+      "cls": "wb-button wb-button--secondary wb-button--medium"
+    },
+    {
+      "t": "校园求职教练",
+      "cls": "ec-featured-scene-expert"
+    },
+    {
+      "t": "论文写作导师",
+      "cls": "ec-featured-scene-expert"
+    },
+    {
+      "t": "校园活动策划与执行顾问",
+      "cls": "ec-featured-scene-expert"
+    },
+    {
+      "t": "内容创作专家团",
+      "cls": "ec-featured-scene-expert"
+    },
+    {
+      "t": "内容创作专家",
+      "cls": "ec-featured-scene-expert"
+    },
+    {
+      "t": "小红书运营专家",
+      "cls": "ec-featured-scene-expert"
+    },
+    {
+      "t": "交易分析团队",
+      "cls": "ec-featured-scene-expert"
+    },
+    {
+      "t": "股票研究专家",
+      "cls": "ec-featured-scene-expert"
+    },
+    {
+      "t": "腾讯自选股股票投研专家团",
+      "cls": "ec-featured-scene-expert"
+    },
+    {
+      "t": "法律检索专家",
+      "cls": "ec-featured-scene-expert"
+    },
+    {
+      "t": "资深合同法务专家",
+      "cls": "ec-featured-scene-expert"
+    },
+    {
+      "t": "财税合规专家团",
+      "cls": "ec-featured-scene-expert"
+    },
+    {
+      "t": "销售教练",
+      "cls": "ec-featured-scene-expert"
+    },
+    {
+      "t": "微信公众号运营专家",
+      "cls": "ec-featured-scene-expert"
+    },
+    {
+      "t": "创业伙伴",
+      "cls": "ec-featured-scene-expert"
+    },
+    {
+      "t": "中国电商运营专家",
+      "cls": "ec-featured-scene-expert"
+    },
+    {
+      "t": "跨境电商专家",
+      "cls": "ec-featured-scene-expert"
+    }
+  ],
+  "nCards": 12,
+  "cards": [
+    {
+      "t": "召唤 全 全栈开发专家 鹏城信息AI专家 全栈开发专家，精通前后端架",
+      "hasSummon": true,
+      "summonTxt": "召唤"
+    },
+    {
+      "t": "召唤 高 高级开发工程师 吴八哥 10年以上全栈经验，精通多种语言和",
+      "hasSummon": true,
+      "summonTxt": "召唤"
+    },
+    {
+      "t": "召唤 微 微信小程序开发者 小程达 精通微信小程序开发框架和生态，打",
+      "hasSummon": true,
+      "summonTxt": "召唤"
+    },
+    {
+      "t": "召唤 美 美团生活助手 40-20外卖券 帮您一键领取美团优惠券（前",
+      "hasSummon": true,
+      "summonTxt": "召唤"
+    },
+    {
+      "t": "召唤 自 自适应成果交付专家 超级合伙人 作为一个靠谱的AI合伙人，",
+      "hasSummon": true,
+      "summonTxt": "召唤"
+    },
+    {
+      "t": "召唤 资 资讯速递专家 特邀专家 数字生命卡兹克 一句话查到每天精选",
+      "hasSummon": true,
+      "summonTxt": "召唤"
+    },
+    {
+      "t": "召唤 网 网站开发与部署专家 鹏城信息AI专家 精通HTML、CSS",
+      "hasSummon": true,
+      "summonTxt": "召唤"
+    },
+    {
+      "t": "召唤 微 微信公众号运营专家 号运运 精通公众号内容策略和粉丝增长，",
+      "hasSummon": true,
+      "summonTxt": "召唤"
+    },
+    {
+      "t": "召唤 创 创业伙伴 林正刚 林老师分身+读书伙伴。送《创业可以学》，",
+      "hasSummon": true,
+      "summonTxt": "召唤"
+    },
+    {
+      "t": "召唤 工 工作台搭建师 小台 为不同人群定制专属数字工作台，覆盖学习",
+      "hasSummon": true,
+      "summonTxt": "召唤"
+    },
+    {
+      "t": "召唤 长 长文档写作与改稿专家 福帮手 轻松几十万字，不跑题，没有A",
+      "hasSummon": true,
+      "summonTxt": "召唤"
+    },
+    {
+      "t": "召唤 战 战略咨询合伙人 战略咨询顾问 假设驱动的战略顾问，按需破题",
+      "hasSummon": true,
+      "summonTxt": "召唤"
+    }
+  ],
+  "lighthouse": []
+}

@@ -1,0 +1,61 @@
+{
+  "goFound": true,
+  "goTxt": "继续使用",
+  "goDisabled": true,
+  "goCls": "cb-button cb-button--primary cb-button--medium cb-button--disabled",
+  "chain": [
+    {
+      "tag": "button",
+      "cls": "cb-button cb-button--primary cb-button--medium cb-button--disabled",
+      "nInput": 0
+    },
+    {
+      "tag": "div",
+      "cls": "_footerButtons_peiew_136 _footerButtonsAlignCenter_peiew_164",
+      "nInput": 0
+    },
+    {
+      "tag": "div",
+      "cls": "_dialogFooter_peiew_116 _dialogFooterAlignCenter_peiew_127",
+      "nInput": 0
+    },
+    {
+      "tag": "div",
+      "cls": "_dialogContainer_peiew_21",
+      "nInput": 1
+    },
+    {
+      "tag": "div",
+      "cls": "_dialogOverlay_peiew_7 ec-team-summon-confirm-overlay",
+      "nInput": 1
+    },
+    {
+      "tag": "body",
+      "cls": "agent-ui-theme monaco-enable-motion underline-links light cb-light vscode-light",
+      "nInput": 2
+    },
+    {
+      "tag": "html",
+      "cls": "light cb-light vscode-light",
+      "nInput": 2
+    }
+  ],
+  "rootCls": "_dialogFooter_peiew_116 _dialogFooterAlignCenter_peiew_127",
+  "rootInputs": [],
+  "rootLabels": [],
+  "rootButtons": [
+    {
+      "t": "继续使用",
+      "cls": "cb-button cb-button--primary cb-button--medium cb-button--disabled",
+      "disabled": true
+    },
+    {
+      "t": "取消",
+      "cls": "cb-button cb-button--secondary cb-button--medium _cancelButtonStatic_peiew_153",
+      "disabled": false
+    }
+  ],
+  "ackEls": [],
+  "goDisabled2": true,
+  "goCls2": "cb-button cb-button--primary cb-button--medium cb-button--disabled"
+}
