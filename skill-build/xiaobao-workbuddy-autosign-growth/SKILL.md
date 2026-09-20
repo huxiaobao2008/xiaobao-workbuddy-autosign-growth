@@ -1,8 +1,8 @@
 ---
-name: buddy-gas-station
+name: xiaobao-workbuddy-autosign-growth
 description: 当用户要求自动完成 WorkBuddy「Buddy 加油站」的日常运营时使用——多账号每日签到、成长任务自动化（含专家团召唤与计分判定）、可领积分扫尾领取、开盲盒与派猫猫旅行。能力覆盖纯 API 直签与桌面客户端自动化两条链路，并给出账号调度顺序、任务完成判定、清理闸门等可执行规则。触发词包括签到、成长任务、专家团、积分领取、盲盒、猫猫旅行、多账号批量、加油站。
-display_name: Buddy加油站全自动
-display_name_en: Buddy Gas Station Automation
+display_name: 小宝WorkBuddy自动签到完成成长计划
+display_name_en: XiaoBao WorkBuddy Auto Sign-in & Growth Tasks
 description_zh: 多账号自动完成 Buddy 加油站：每日签到、成长任务驱动、积分领取、开盲盒与派猫猫旅行，含账号调度顺序、专家团计分判定与完成后清理闸门。
 description_en: Automate Buddy Gas Station across multiple accounts via daily check-in, growth-task driving, credit claiming, blind box opening and Buddy travel, with account scheduling order, expert-team scoring rules and a post-completion cleanup gate.
 version: 1.0.0
