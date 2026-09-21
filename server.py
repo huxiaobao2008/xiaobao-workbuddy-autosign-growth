@@ -703,6 +703,7 @@ ACTIONS = {
     "run-account": action_run_account,
     "set-mode": action_set_mode,
     "sync": action_sync,
+    "stop": action_stop,
 }
 
 

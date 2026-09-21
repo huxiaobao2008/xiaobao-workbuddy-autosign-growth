@@ -698,10 +698,18 @@ def run_account(key, codes, templates, do_claim, do_delete, dry, log, deadline=N
     out["label"] = acct.get("label")
 
     if not dry:
-        sw = AS.switch_to(key, reload=False)
+        # ★ 修复 2026-09-21「普通任务进度 0/5、手动切号后才开始做」：
+        #   旧写法 reload=False 只靠登录文件 uid 判成功，但客户端**界面会话还停在旧账号**
+        #   （ui_driver.run_task 注释已证实：刚切完账号时侧边栏仍是上一个账号的列表），
+        #   于是 template_5/Model_chat 的对话被建到旧账号下、目标账号进度恒为 0。
+        #   这里必须 reload=True + verify=True，让渲染进程真正落到目标账号再做 UI 驱动。
+        #   switch_to 默认就是 reload=True，自动化流程此前显式关掉是这次回归的根源。
+        sw = AS.switch_to(key, reload=True, verify=True)
         out["switch"] = sw
-        log("  [切] -> %s ok=%s 界面=%s" % (key, sw.get("ok"),
-                                          (sw.get("after") or {}).get("menu")))
+        out["switch_menu_pending"] = bool(sw.get("menu_pending"))
+        log("  [切] -> %s ok=%s 界面=%s%s" % (key, sw.get("ok"),
+                                           (sw.get("after") or {}).get("menu"),
+                                           "（界面待刷新）" if sw.get("menu_pending") else ""))
         if not sw.get("ok"):
             out["err"] = "切换失败"
             return out

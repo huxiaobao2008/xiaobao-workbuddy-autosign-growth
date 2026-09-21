@@ -293,7 +293,8 @@ async function useTemplate(name) {
   const list = document.querySelector('.quick-actions__list')
             || document.querySelector('.quick-actions');
   const find = () => Array.from(document.querySelectorAll('.quick-actions__item'))
-        .find(b => txt(b) === name && b.getBoundingClientRect().width > 10);
+        .find(b => (txt(b) === name || txt(b).includes(name))
+                  && b.getBoundingClientRect().width > 10);
   let item = find();
   for (let i = 0; i < 14 && !item; i++) {
     if (!list) break;
