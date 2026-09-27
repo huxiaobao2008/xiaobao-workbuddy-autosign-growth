@@ -5,7 +5,7 @@ display_name: 小宝WorkBuddy自动签到完成成长计划
 display_name_en: XiaoBao WorkBuddy Auto Sign-in & Growth Tasks
 description_zh: 多账号自动完成 Buddy 加油站：每日签到、成长任务驱动、积分领取、开盲盒与派猫猫旅行，含账号调度顺序、专家团计分判定与完成后清理闸门。
 description_en: Automate Buddy Gas Station across multiple accounts via daily check-in, growth-task driving, credit claiming, blind box opening and Buddy travel, with account scheduling order, expert-team scoring rules and a post-completion cleanup gate.
-version: 1.0.0
+version: 1.1.0
 category: 自动化
 author: buddy-auto
 license: MIT
@@ -46,6 +46,10 @@ allowed-tools: Read,Write,Edit,Bash,Glob,Grep
 - 动作：定位登录态文件 `%LOCALAPPDATA%\CodeBuddyExtension\Data\Public\auth\workbuddy-desktop.info`，
   读取 `auth.accessToken` 与 `auth.domain`；多账号时按 `config.json` 的 `accounts` 逐个载入凭证。
 - 判据：Token 存在且未过期；缺失时提示用户在客户端重新登录，不伪造、不猜测。
+- **信封解密（WorkBuddy 5.6.2+ 必有）**：新版敏感字段是 `$wbEncrypted` 加密信封（AES-256-GCM），
+  必须先用 `scripts/atrest.py` 的 `is_envelope/decrypt_envelope/load_key` 解成明文再调用接口；
+  缺少静态密钥 `data/atrest.key` 时**绝不能把信封当明文发送**（全员 401），
+  先恢复密钥再重抓凭证。解密只改内存副本，不落盘。
 
 ### 步骤 2 · 确定账号执行顺序（关键）
 
@@ -114,3 +118,11 @@ allowed-tools: Read,Write,Edit,Bash,Glob,Grep
 - `references/automation-playbook.md` —— 客户端自动化与专家团计分判定
 - `references/pitfalls.md` —— 实测踩坑清单
 - `scripts/buddy_gas_station.py` —— 零依赖脚本，跑 API 链路（签到 / 盲盒 / 旅行）
+- `scripts/atrest.py` —— 零依赖信封解密（`$wbEncrypted` → 明文 JWT，纯标准库 AES-256-GCM）
+
+## 更新记录
+
+- **v1.1.0（2026-09-28）**：适配 WorkBuddy 5.6.2 登录态 `$wbEncrypted` 加密信封——
+  新增 `scripts/atrest.py`；`buddy_gas_station.py` 增加信封检测/解密与 `--atrest-key` 参数、
+  退出码 3；pits:凭证信封层 18-23 条收录本次修复的 4 类问题。旧版明文 Token 流程仍适用，
+  脚本自动兼容（非信封原样透传）。
